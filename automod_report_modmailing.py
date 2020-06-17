@@ -12,7 +12,6 @@ USER_NAME = 'username'
 
 SUBREDDIT = "earthporn"
 
-
 # main
 ######
 def main():
@@ -53,10 +52,12 @@ def main():
     automod_mail = automod_mail.assign(logged=automod_mail[0].isin(automod_log[0]).astype(int))
     print("------")
     print("modlog:")
-    print(automod_log)
+    with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
+        print(automod_log)
     print("------")
     print("modmail:")
-    print(automod_mail)
+    with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
+        print(automod_mail)
     print("\n")
     not_mailed = automod_log.mailed.size - automod_log.mailed.sum()
     not_logged = automod_mail.logged.size - automod_mail.logged.sum()
